@@ -3,9 +3,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PerangkatDesa;
 use Illuminate\Http\Request;
+use Cloudinary\Cloudinary;
 
 class PerangkatController extends Controller
 {
+    private function uploadToCloudinary($file) {
+        $cloudinary = new Cloudinary([
+            'cloud' => [
+                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                'api_key'    => env('CLOUDINARY_API_KEY'),
+                'api_secret' => env('CLOUDINARY_API_SECRET'),
+            ]
+        ]);
+        $result = $cloudinary->uploadApi()->upload($file->getRealPath(), ['folder' => 'perangkat']);
+        return $result['secure_url'];
+    }
+
     public function index() {
         $perangkat = PerangkatDesa::orderBy('id')->paginate(12);
         return view('admin.perangkat.index', compact('perangkat'));
@@ -14,10 +27,8 @@ class PerangkatController extends Controller
     public function store(Request $request) {
         $request->validate(['nama'=>'required','jabatan'=>'required','foto'=>'nullable|image|max:2048']);
         $data = ['nama'=>$request->nama,'jabatan'=>$request->jabatan];
-        if ($request->hasFile('foto')) {
-            $uploaded = cloudinary()->upload($request->file('foto')->getRealPath());
-            $data['foto'] = $uploaded->getSecurePath();
-        }
+        if ($request->hasFile('foto'))
+            $data['foto'] = $this->uploadToCloudinary($request->file('foto'));
         PerangkatDesa::create($data);
         return redirect()->route('admin.perangkat.index')->with('success','Data perangkat berhasil ditambahkan.');
     }
@@ -28,16 +39,13 @@ class PerangkatController extends Controller
     public function update(Request $request, $id) {
         $p = PerangkatDesa::findOrFail($id);
         $data = ['nama'=>$request->nama,'jabatan'=>$request->jabatan];
-        if ($request->hasFile('foto')) {
-            $uploaded = cloudinary()->upload($request->file('foto')->getRealPath());
-            $data['foto'] = $uploaded->getSecurePath();
-        }
+        if ($request->hasFile('foto'))
+            $data['foto'] = $this->uploadToCloudinary($request->file('foto'));
         $p->update($data);
         return redirect()->route('admin.perangkat.index')->with('success','Data perangkat diperbarui.');
     }
     public function destroy($id) {
-        $p = PerangkatDesa::findOrFail($id);
-        $p->delete();
+        PerangkatDesa::findOrFail($id)->delete();
         return redirect()->route('admin.perangkat.index')->with('success','Data perangkat dihapus.');
     }
 }
