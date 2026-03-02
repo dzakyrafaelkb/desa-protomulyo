@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PerangkatDesa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class PerangkatController extends Controller
 {
@@ -15,7 +14,10 @@ class PerangkatController extends Controller
     public function store(Request $request) {
         $request->validate(['nama'=>'required','jabatan'=>'required','foto'=>'nullable|image|max:2048']);
         $data = ['nama'=>$request->nama,'jabatan'=>$request->jabatan];
-        if ($request->hasFile('foto')) $data['foto'] = $request->file('foto')->store('perangkat','public');
+        if ($request->hasFile('foto')) {
+            $uploaded = cloudinary()->upload($request->file('foto')->getRealPath());
+            $data['foto'] = $uploaded->getSecurePath();
+        }
         PerangkatDesa::create($data);
         return redirect()->route('admin.perangkat.index')->with('success','Data perangkat berhasil ditambahkan.');
     }
@@ -27,15 +29,14 @@ class PerangkatController extends Controller
         $p = PerangkatDesa::findOrFail($id);
         $data = ['nama'=>$request->nama,'jabatan'=>$request->jabatan];
         if ($request->hasFile('foto')) {
-            if ($p->foto) Storage::disk('public')->delete($p->foto);
-            $data['foto'] = $request->file('foto')->store('perangkat','public');
+            $uploaded = cloudinary()->upload($request->file('foto')->getRealPath());
+            $data['foto'] = $uploaded->getSecurePath();
         }
         $p->update($data);
         return redirect()->route('admin.perangkat.index')->with('success','Data perangkat diperbarui.');
     }
     public function destroy($id) {
         $p = PerangkatDesa::findOrFail($id);
-        if ($p->foto) Storage::disk('public')->delete($p->foto);
         $p->delete();
         return redirect()->route('admin.perangkat.index')->with('success','Data perangkat dihapus.');
     }

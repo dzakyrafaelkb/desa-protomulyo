@@ -18,7 +18,7 @@
                         <td><small class="text-muted">{{ $berita->firstItem()+$i }}</small></td>
                         <td>
                             @if($b->gambar)
-                                <img src="{{ Storage::url($b->gambar) }}" class="rounded-2" style="width:70px;height:50px;object-fit:cover;">
+                                <img src="{{ ${b->gambar} }}" class="rounded-2" style="width:70px;height:50px;object-fit:cover;">
                             @else
                                 <div class="bg-light rounded-2 d-flex align-items-center justify-content-center" style="width:70px;height:50px;">
                                     <i class="bi bi-image text-muted"></i>

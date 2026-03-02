@@ -10,7 +10,7 @@
         <div class="col-md-4">
             <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden hover-card">
                 @if($b->gambar)
-                    <img src="{{ Storage::url($b->gambar) }}" class="card-img-top" style="height:200px;object-fit:cover;">
+                    <img src="{{ ${b->gambar} }}" class="card-img-top" style="height:200px;object-fit:cover;">
                 @else
                     <div class="bg-success d-flex align-items-center justify-content-center" style="height:200px;">
                         <i class="bi bi-newspaper text-white" style="font-size:50px;"></i>

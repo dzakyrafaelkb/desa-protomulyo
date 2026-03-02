@@ -18,7 +18,7 @@
                         <small class="text-muted">{{ $d->created_at->isoFormat('D MMM Y') }}</small>
                     </div>
                 </div>
-                <a href="{{ Storage::url($d->file) }}" target="_blank" class="btn btn-outline-success rounded-3 w-100">
+                <a href="{{ ${d->file} }}" target="_blank" class="btn btn-outline-success rounded-3 w-100">
                     <i class="bi bi-download me-2"></i>Download
                 </a>
             </div>

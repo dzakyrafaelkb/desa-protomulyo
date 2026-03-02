@@ -17,7 +17,7 @@
                     <tr>
                         <td><small class="text-muted">{{ $dokumen->firstItem()+$i }}</small></td>
                         <td class="fw-semibold">{{ $d->nama }}</td>
-                        <td><a href="{{ Storage::url($d->file) }}" target="_blank" class="btn btn-sm btn-outline-secondary"><i class="bi bi-download me-1"></i>Download</a></td>
+                        <td><a href="{{ ${d->file} }}" target="_blank" class="btn btn-sm btn-outline-secondary"><i class="bi bi-download me-1"></i>Download</a></td>
                         <td><small class="text-muted">{{ $d->created_at->isoFormat('D MMM Y') }}</small></td>
                         <td class="text-center">
                             <a href="{{ route('admin.dokumen.edit',$d->id) }}" class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></a>

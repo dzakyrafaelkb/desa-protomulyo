@@ -17,7 +17,7 @@
             <div class="mb-4">
                 <label class="form-label fw-semibold">Ganti Foto</label>
                 @if($perangkat->foto)
-                    <div class="mb-2"><img src="{{ Storage::url($perangkat->foto) }}" class="rounded-circle" style="width:80px;height:80px;object-fit:cover;"></div>
+                    <div class="mb-2"><img src="{{ ${perangkat->foto} }}" class="rounded-circle" style="width:80px;height:80px;object-fit:cover;"></div>
                 @endif
                 <input type="file" name="foto" class="form-control" accept="image/*">
                 <small class="text-muted">Kosongkan jika tidak ingin mengganti.</small>

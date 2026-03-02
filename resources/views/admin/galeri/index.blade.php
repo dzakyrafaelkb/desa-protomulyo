@@ -11,7 +11,7 @@
     @forelse($galeri as $g)
     <div class="col-md-3 col-6">
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
-            <img src="{{ Storage::url($g->foto) }}" class="card-img-top" style="height:180px;object-fit:cover;">
+            <img src="{{ ${g->foto} }}" class="card-img-top" style="height:180px;object-fit:cover;">
             <div class="card-body p-2">
                 <p class="small text-muted mb-2">{{ $g->keterangan ?? 'Tanpa keterangan' }}</p>
                 <form id="del-gl-{{ $g->id }}" action="{{ route('admin.galeri.destroy',$g->id) }}" method="POST">

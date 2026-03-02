@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -15,8 +14,10 @@ class BeritaController extends Controller
     public function store(Request $request) {
         $request->validate(['judul'=>'required','isi'=>'required','gambar'=>'nullable|image|max:2048']);
         $data = ['judul'=>$request->judul,'isi'=>$request->isi,'tanggal'=>now()->toDateString()];
-        if ($request->hasFile('gambar'))
-            $data['gambar'] = $request->file('gambar')->store('berita','public');
+        if ($request->hasFile('gambar')) {
+            $uploaded = cloudinary()->upload($request->file('gambar')->getRealPath());
+            $data['gambar'] = $uploaded->getSecurePath();
+        }
         Berita::create($data);
         return redirect()->route('admin.berita.index')->with('success','Berita berhasil ditambahkan.');
     }
@@ -29,15 +30,14 @@ class BeritaController extends Controller
         $request->validate(['judul'=>'required','isi'=>'required','gambar'=>'nullable|image|max:2048']);
         $data = ['judul'=>$request->judul,'isi'=>$request->isi];
         if ($request->hasFile('gambar')) {
-            if ($berita->gambar) Storage::disk('public')->delete($berita->gambar);
-            $data['gambar'] = $request->file('gambar')->store('berita','public');
+            $uploaded = cloudinary()->upload($request->file('gambar')->getRealPath());
+            $data['gambar'] = $uploaded->getSecurePath();
         }
         $berita->update($data);
         return redirect()->route('admin.berita.index')->with('success','Berita berhasil diperbarui.');
     }
     public function destroy($id) {
         $b = Berita::findOrFail($id);
-        if ($b->gambar) Storage::disk('public')->delete($b->gambar);
         $b->delete();
         return redirect()->route('admin.berita.index')->with('success','Berita berhasil dihapus.');
     }

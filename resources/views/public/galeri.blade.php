@@ -9,7 +9,7 @@
         @forelse($galeri as $g)
         <div class="col-md-4 col-6">
             <div class="card border-0 shadow-sm rounded-4 overflow-hidden hover-card">
-                <img src="{{ Storage::url($g->foto) }}" class="w-100" style="height:220px;object-fit:cover;" alt="{{ $g->keterangan ?? 'Galeri' }}">
+                <img src="{{ ${g->foto} }}" class="w-100" style="height:220px;object-fit:cover;" alt="{{ $g->keterangan ?? 'Galeri' }}">
                 @if($g->keterangan)
                     <div class="card-body p-2 text-center"><small class="text-muted">{{ $g->keterangan }}</small></div>
                 @endif
