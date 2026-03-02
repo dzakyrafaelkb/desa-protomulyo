@@ -13,7 +13,7 @@
         <div class="card border-0 shadow-sm rounded-4 text-center p-3">
             <div class="mx-auto mb-3 overflow-hidden rounded-circle" style="width:100px;height:100px;">
                 @if($p->foto)
-                    <img src="{{ ${p->foto} }}" class="w-100 h-100" style="object-fit:cover;">
+                    <img src="{{ $1->foto }}" class="w-100 h-100" style="object-fit:cover;">
                 @else
                     <div class="w-100 h-100 bg-success d-flex align-items-center justify-content-center">
                         <i class="bi bi-person-fill text-white" style="font-size:40px;"></i>
@@ -37,3 +37,4 @@
 </div>
 <div class="mt-3">{{ $perangkat->links() }}</div>
 @endsection
+

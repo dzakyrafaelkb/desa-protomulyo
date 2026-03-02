@@ -116,7 +116,7 @@
                 <div class="org-card card-l1">
                     <div class="foto-wrap">
                         @if($p->foto)
-                            <img src="{{ ${p->foto} }}" alt="{{ $p->nama }}">
+                            <img src="{{ $1->foto }}" alt="{{ $p->nama }}">
                         @else
                             <i class="bi bi-person-fill text-white" style="font-size:48px;"></i>
                         @endif
@@ -138,7 +138,7 @@
                 <div class="org-card card-l2">
                     <div class="foto-wrap">
                         @if($p->foto)
-                            <img src="{{ ${p->foto} }}" alt="{{ $p->nama }}">
+                            <img src="{{ $1->foto }}" alt="{{ $p->nama }}">
                         @else
                             <i class="bi bi-person-fill text-white" style="font-size:48px;"></i>
                         @endif
@@ -160,7 +160,7 @@
                 <div class="org-card card-l3">
                     <div class="foto-wrap">
                         @if($p->foto)
-                            <img src="{{ ${p->foto} }}" alt="{{ $p->nama }}">
+                            <img src="{{ $1->foto }}" alt="{{ $p->nama }}">
                         @else
                             <i class="bi bi-person-fill text-white" style="font-size:48px;"></i>
                         @endif
@@ -175,7 +175,7 @@
                 <div class="org-card card-l4">
                     <div class="foto-wrap">
                         @if($p->foto)
-                            <img src="{{ ${p->foto} }}" alt="{{ $p->nama }}">
+                            <img src="{{ $1->foto }}" alt="{{ $p->nama }}">
                         @else
                             <i class="bi bi-person-fill text-white" style="font-size:48px;"></i>
                         @endif
@@ -198,7 +198,7 @@
                 <div class="org-card card-l5">
                     <div class="foto-wrap">
                         @if($p->foto)
-                            <img src="{{ ${p->foto} }}" alt="{{ $p->nama }}">
+                            <img src="{{ $1->foto }}" alt="{{ $p->nama }}">
                         @else
                             <i class="bi bi-person-fill text-white" style="font-size:48px;"></i>
                         @endif
@@ -218,3 +218,4 @@
     </div>
 </div>
 @endsection
+

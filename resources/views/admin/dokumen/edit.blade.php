@@ -13,7 +13,7 @@
             <div class="mb-4">
                 <label class="form-label fw-semibold">Ganti File</label>
                 <div class="mb-2">
-                    <a href="{{ ${dokumen->file} }}" target="_blank" class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark me-1"></i>File Saat Ini</a>
+                    <a href="{{ $1->file }}" target="_blank" class="btn btn-sm btn-outline-secondary"><i class="bi bi-file-earmark me-1"></i>File Saat Ini</a>
                 </div>
                 <input type="file" name="file" class="form-control" accept=".pdf,.doc,.docx">
                 <small class="text-muted">Kosongkan jika tidak ingin mengganti.</small>
@@ -26,3 +26,4 @@
     </div>
 </div>
 @endsection
+

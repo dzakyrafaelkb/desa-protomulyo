@@ -103,3 +103,4 @@ function confirmDelete(formId) {
 @stack('scripts')
 </body>
 </html>
+

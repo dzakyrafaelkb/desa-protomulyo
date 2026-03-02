@@ -94,3 +94,4 @@ new Chart(document.getElementById('chartPekerjaan'),{
 });
 </script>
 @endpush
+

@@ -17,7 +17,7 @@
             <div class="mb-4">
                 <label class="form-label fw-semibold">Ganti Gambar</label>
                 @if($berita->gambar)
-                    <div class="mb-2"><img src="{{ ${berita->gambar} }}" class="rounded-3" style="height:100px;object-fit:cover;"></div>
+                    <div class="mb-2"><img src="{{ $1->gambar }}" class="rounded-3" style="height:100px;object-fit:cover;"></div>
                 @endif
                 <input type="file" name="gambar" class="form-control" accept="image/*">
                 <small class="text-muted">Kosongkan jika tidak ingin mengganti.</small>
@@ -30,3 +30,4 @@
     </div>
 </div>
 @endsection
+

@@ -17,8 +17,8 @@
                         <td style="max-width:220px;">{{ Str::limit($p->isi,70) }}</td>
                         <td>
                             @if($p->foto)
-                                <img src="{{ ${p->foto} }}" class="rounded-2" style="width:60px;height:45px;object-fit:cover;cursor:pointer;"
-                                     onclick="window.open('{{ ${p->foto} }}','_blank')">
+                                <img src="{{ $1->foto }}" class="rounded-2" style="width:60px;height:45px;object-fit:cover;cursor:pointer;"
+                                     onclick="window.open('{{ $1->foto }}','_blank')">
                             @else <span class="text-muted small">-</span>
                             @endif
                         </td>
@@ -50,3 +50,4 @@
     </div>
 </div>
 @endsection
+

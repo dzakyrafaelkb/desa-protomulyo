@@ -12,7 +12,7 @@
             </nav>
             <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
                 @if($berita->gambar)
-                    <img src="{{ ${berita->gambar} }}" class="w-100" style="max-height:400px;object-fit:cover;">
+                    <img src="{{ $1->gambar }}" class="w-100" style="max-height:400px;object-fit:cover;">
                 @endif
                 <div class="card-body p-5">
                     <div class="mb-3">
@@ -32,3 +32,4 @@
     </div>
 </div>
 @endsection
+
