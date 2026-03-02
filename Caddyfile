@@ -1,0 +1,24 @@
+{
+    frankenphp
+    admin off
+}
+
+:{$PORT} {
+    root * /app/public
+    encode gzip
+
+    php_server
+
+    file_server
+
+    @notFile {
+        not file
+    }
+    rewrite @notFile /index.php
+
+    log {
+        output stderr
+        format console
+        level ERROR
+    }
+} 
